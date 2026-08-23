@@ -48,7 +48,7 @@ const MOCK_ITEMS: MenuItem[] = [
     slug: 'tropical-yogurt',
     description: 'House-made probiotic yogurt with fresh tropical fruits, organic, coconut and edible flowers.',
     price: 1500,
-    category: 'YOGURT',
+    category: 'YOGURT_BOWLS',
     status: 'AVAILABLE',
     imageUrl: null,
     imagePublicId: null,
@@ -138,7 +138,7 @@ const MOCK_ITEMS: MenuItem[] = [
     slug: 'berry-bliss-yogurt-bowl',
     description: 'Creamy Greek-style yogurt topped with fresh berries, chia seeds, and a swirl of raw honey.',
     price: 5000,
-    category: 'YOGURT',
+    category: 'YOGURT_BOWLS',
     status: 'AVAILABLE',
     imageUrl: null,
     imagePublicId: null,
@@ -151,7 +151,7 @@ const MOCK_ITEMS: MenuItem[] = [
 
 type FilterCategory = 'ALL' | Category;
 
-const CATEGORIES: FilterCategory[] = ['ALL', 'NUTRITIOUS_MEALS', 'SNACKS', 'YOGURT', 'ZOBO_JUICES'];
+const CATEGORIES: FilterCategory[] = ['ALL', 'NUTRITIOUS_MEALS', 'SNACKS', 'YOGURT_BOWLS', 'ZOBO_JUICES'];
 
 async function fetchMenuItems(): Promise<MenuItem[]> {
   try {
