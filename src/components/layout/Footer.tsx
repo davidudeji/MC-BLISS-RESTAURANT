@@ -24,12 +24,12 @@ export function Footer() {
               />
               <div>
                 <p className="font-display font-bold text-white text-xl">MC Bliss</p>
-                <p className="text-[#D4A373] text-xs font-body tracking-widest uppercase">Organic Wellness</p>
+                <p className="text-[#D4A373] text-xs font-body tracking-widest uppercase">Restaurant & Catering Service</p>
               </div>
             </div>
             <p className="text-gray-400 text-sm font-body leading-relaxed max-w-xs">
-              Honest food, grown properly, served daily. Nutrient-dense meals crafted
-              from sustainable, farm-fresh ingredients.
+              Honest food, prepared carefully, served daily. Nutrient-dense meals crafted
+              from sustainable, fresh ingredients.
             </p>
             {/* Social */}
             <div className="flex items-center gap-3 mt-6">
@@ -83,8 +83,8 @@ export function Footer() {
             <ul className="space-y-3">
               {[
                 'Nutritious Meals',
-                'Snacks',
-                'Yogurt Bowls',
+                'Baked snacks',
+                'Yogurt',
                 'Zobo & Juices',
               ].map((cat) => (
                 <li key={cat}>
@@ -107,7 +107,7 @@ export function Footer() {
             <ul className="space-y-4">
               <li className="flex items-start gap-3 text-gray-400 text-sm font-body">
                 <MapPin size={16} className="text-[#D4A373] mt-0.5 flex-shrink-0" />
-                <span>12 Wellness Avenue, Victoria Island, Lagos, Nigeria</span>
+                <span>Karu/Jikwoyi Road, CBN Junction, Abuja, Nigeria</span>
               </li>
               <li className="flex items-center gap-3 text-gray-400 text-sm font-body">
                 <Phone size={16} className="text-[#D4A373] flex-shrink-0" />
@@ -118,7 +118,7 @@ export function Footer() {
               <li className="flex items-center gap-3 text-gray-400 text-sm font-body">
                 <Mail size={16} className="text-[#D4A373] flex-shrink-0" />
                 <a href="mailto:hello@mcbliss.ng" className="hover:text-[#D4A373] transition-colors">
-                  hello@mcbliss.ng
+                  mcblissrestaurant@gmail.com
                 </a>
               </li>
             </ul>
@@ -137,11 +137,11 @@ export function Footer() {
         {/* Bottom bar */}
         <div className="flex flex-col sm:flex-row items-center justify-between gap-4 py-6">
           <p className="text-gray-500 text-xs font-body text-center sm:text-left">
-            &copy; {currentYear} MC Bliss Organic Wellness Restaurant. All rights reserved.
+            &copy; {currentYear} MC Bliss Restaurant and Catering Service. All rights reserved.
           </p>
           <div className="flex items-center gap-1.5 text-gray-500 text-xs font-body">
             <Leaf size={12} className="text-[#1E392A]" />
-            <span>Farm-fresh. Sustainably sourced. Served with love.</span>
+            <span>Healthy. Nourishing. Served with love.</span>
           </div>
           <div className="flex items-center gap-4">
             <Link to="/admin/login" className="text-gray-500 hover:text-gray-400 text-xs font-body transition-colors">

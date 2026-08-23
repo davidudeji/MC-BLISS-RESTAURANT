@@ -121,7 +121,7 @@ export default function CheckoutPage() {
                 <Input
                   id="customerName"
                   label="Full Name"
-                  placeholder="e.g., Amaka Obi"
+                  placeholder="e.g., MC Bliss"
                   required
                   error={errors.customerName?.message}
                   {...register('customerName')}
@@ -130,7 +130,7 @@ export default function CheckoutPage() {
                   id="customerEmail"
                   type="email"
                   label="Email Address"
-                  placeholder="your@email.com"
+                  placeholder="mcblissrestaurant@gmail.com"
                   required
                   error={errors.customerEmail?.message}
                   {...register('customerEmail')}
@@ -139,7 +139,7 @@ export default function CheckoutPage() {
                   id="customerPhone"
                   type="tel"
                   label="Phone Number"
-                  placeholder="+234 801 234 5678"
+                  placeholder="+234 806 581 9988"
                   required
                   error={errors.customerPhone?.message}
                   {...register('customerPhone')}
@@ -165,7 +165,7 @@ export default function CheckoutPage() {
                     {isSubmitting ? 'Processing order…' : `Place Order · ${formatPrice(total)}`}
                   </Button>
                   <p className="text-xs text-gray-400 font-body text-center mt-3">
-                    Prices are confirmed server-side at checkout
+                    Prices are confirmed at checkout
                   </p>
                 </div>
               </form>

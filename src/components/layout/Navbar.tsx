@@ -64,12 +64,12 @@ export function Navbar() {
             <Link to="/" className="flex items-center gap-3 flex-shrink-0">
               <img
                 src="/mc-bliss-logo.png"
-                alt="MC Bliss Restaurant"
+                alt="MC Bliss Restaurant & Catering Services"
                 className="h-10 w-10 lg:h-12 lg:w-12 rounded-full object-cover ring-2 ring-[#D4A373]/40"
               />
               <div className="hidden sm:block">
-                <p className="font-display font-bold text-white text-lg leading-tight">MC Bliss</p>
-                <p className="text-[#D4A373] text-xs font-body tracking-widest uppercase">Organic Wellness</p>
+                <p className="font-display font-bold text-white text-lg leading-tight">MC Bliss </p>
+                <p className="text-[#D4A373] text-xs font-body tracking-widest uppercase">Restaurant & Catering Service</p>
               </div>
             </Link>
 

@@ -8,15 +8,16 @@ import { MenuGridSkeleton } from '../ui/Skeleton';
 import { ErrorState, SearchEmpty, EmptyState } from '../ui/EmptyState';
 import type { MenuItem, Category } from '../../types';
 import { CATEGORY_LABELS } from '../../types';
+import { image } from 'framer-motion/client';
 
 // Realistic mock data to show while backend is not connected
 const MOCK_ITEMS: MenuItem[] = [
   {
     id: '1',
-    name: 'Organic Avocado & Egg Bowl',
-    slug: 'organic-avocado-egg-bowl',
-    description: 'Creamy avocado, farm eggs, greens, seeds and nutrient-rich vegetables. A power-packed breakfast bowl to start your day right.',
-    price: 7500,
+    name: 'Akpu & Egusi Soup',
+    slug: 'Akpu & Egusi Soup',
+    description: 'Fresh made Akpu and Egusi Soup.',
+    price: 2000,
     category: 'NUTRITIOUS_MEALS',
     status: 'AVAILABLE',
     imageUrl: null,
@@ -28,10 +29,10 @@ const MOCK_ITEMS: MenuItem[] = [
   },
   {
     id: '2',
-    name: 'Green Goddess Salad',
-    slug: 'green-goddess-salad',
-    description: 'A vibrant medley of seasonal greens, cucumber, edamame, and our signature herb tahini dressing.',
-    price: 6000,
+    name: 'Abacha',
+    slug: 'Abacha',
+    description: 'Abacha with fresh fish.',
+    price: 2000,
     category: 'NUTRITIOUS_MEALS',
     status: 'AVAILABLE',
     imageUrl: null,
@@ -43,11 +44,11 @@ const MOCK_ITEMS: MenuItem[] = [
   },
   {
     id: '3',
-    name: 'Tropical Yogurt Bowl',
-    slug: 'tropical-yogurt-bowl',
-    description: 'House-made probiotic yogurt with fresh tropical fruits, organic granola, honey drizzle and edible flowers.',
-    price: 5500,
-    category: 'YOGURT_BOWLS',
+    name: 'Tropical Yogurt ',
+    slug: 'tropical-yogurt',
+    description: 'House-made probiotic yogurt with fresh tropical fruits, organic, coconut and edible flowers.',
+    price: 1500,
+    category: 'YOGURT',
     status: 'AVAILABLE',
     imageUrl: null,
     imagePublicId: null,
@@ -58,11 +59,11 @@ const MOCK_ITEMS: MenuItem[] = [
   },
   {
     id: '4',
-    name: 'Nut & Seed Energy Bites',
-    slug: 'nut-seed-energy-bites',
-    description: 'Handcrafted no-bake energy bites made with dates, cashews, cocoa nibs, and superseeds.',
-    price: 3500,
-    category: 'SNACKS',
+    name: 'White Rice & Stew',
+    slug: 'White Rice & Stew',
+    description: 'White Rice & Stew with meat or fish.',
+    price: 2000,
+    category: 'NUTRITIOUS_MEALS',
     status: 'AVAILABLE',
     imageUrl: null,
     imagePublicId: null,
@@ -73,10 +74,10 @@ const MOCK_ITEMS: MenuItem[] = [
   },
   {
     id: '5',
-    name: 'Cold-Steeped Hibiscus Zobo',
-    slug: 'cold-steeped-hibiscus-zobo',
-    description: 'Our signature cold-steeped hibiscus drink infused with ginger, cloves, and a hint of pineapple. No sugar added.',
-    price: 2500,
+    name: 'Cold-Steeped Zobo',
+    slug: 'cold-steeped zobo',
+    description: 'Our signature cold-steeped drink infused with ginger, cloves, and a hint of pineapple. No sugar added.',
+    price: 500,
     category: 'ZOBO_JUICES',
     status: 'AVAILABLE',
     imageUrl: null,
@@ -88,11 +89,11 @@ const MOCK_ITEMS: MenuItem[] = [
   },
   {
     id: '6',
-    name: 'Ginger Citrus Zobo',
-    slug: 'ginger-citrus-zobo',
-    description: 'Zingy hibiscus base with fresh ginger, lime, and orange peel. Refreshingly bold and naturally sugar-free.',
+    name: 'Fried Rice & Chicken',
+    slug: 'Fried Rice & Chicken',
+    description: 'Delicious Fried Rice and Chicken with pepper sauce.',
     price: 2500,
-    category: 'ZOBO_JUICES',
+    category: 'NUTRITIOUS_MEALS',
     status: 'OUT_OF_STOCK',
     imageUrl: null,
     imagePublicId: null,
@@ -106,7 +107,7 @@ const MOCK_ITEMS: MenuItem[] = [
     name: 'Fresh Green Juice',
     slug: 'fresh-green-juice',
     description: 'Cold-pressed celery, cucumber, spinach, green apple, and lemon. Pure plant nutrition in every sip.',
-    price: 3000,
+    price: 500,
     category: 'ZOBO_JUICES',
     status: 'AVAILABLE',
     imageUrl: null,
@@ -137,7 +138,7 @@ const MOCK_ITEMS: MenuItem[] = [
     slug: 'berry-bliss-yogurt-bowl',
     description: 'Creamy Greek-style yogurt topped with fresh berries, chia seeds, and a swirl of raw honey.',
     price: 5000,
-    category: 'YOGURT_BOWLS',
+    category: 'YOGURT',
     status: 'AVAILABLE',
     imageUrl: null,
     imagePublicId: null,
@@ -150,7 +151,7 @@ const MOCK_ITEMS: MenuItem[] = [
 
 type FilterCategory = 'ALL' | Category;
 
-const CATEGORIES: FilterCategory[] = ['ALL', 'NUTRITIOUS_MEALS', 'SNACKS', 'YOGURT_BOWLS', 'ZOBO_JUICES'];
+const CATEGORIES: FilterCategory[] = ['ALL', 'NUTRITIOUS_MEALS', 'SNACKS', 'YOGURT', 'ZOBO_JUICES'];
 
 async function fetchMenuItems(): Promise<MenuItem[]> {
   try {
@@ -255,11 +256,10 @@ export function MenuSection() {
               <button
                 key={cat}
                 onClick={() => setActiveCategory(cat)}
-                className={`flex-shrink-0 px-4 py-2.5 rounded-xl text-sm font-medium font-body transition-all duration-200 ${
-                  activeCategory === cat
-                    ? 'bg-[#1E392A] text-white shadow-sm'
-                    : 'bg-white border border-[#E5E0D8] text-gray-600 hover:border-[#1E392A] hover:text-[#1E392A]'
-                }`}
+                className={`flex-shrink-0 px-4 py-2.5 rounded-xl text-sm font-medium font-body transition-all duration-200 ${activeCategory === cat
+                  ? 'bg-[#1E392A] text-white shadow-sm'
+                  : 'bg-white border border-[#E5E0D8] text-gray-600 hover:border-[#1E392A] hover:text-[#1E392A]'
+                  }`}
               >
                 {CATEGORY_LABELS[cat]}
               </button>

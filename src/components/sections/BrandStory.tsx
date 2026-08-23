@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { CheckCircle2, ArrowRight } from 'lucide-react';
 
 const features = [
-  { icon: '🌿', text: 'Farm-fresh ingredients sourced daily' },
+  { icon: '🌿', text: 'Fresh ingredients sourced daily' },
   { icon: '🥗', text: 'Nutrient-conscious meal preparation' },
   { icon: '🫙', text: 'Small-batch cooking for maximum freshness' },
   { icon: '🤝', text: 'Sustainable, ethical sourcing partnerships' },
@@ -35,9 +35,10 @@ export function BrandStory() {
                   <div className="text-8xl">🥗</div>
                   <div className="text-center">
                     <p className="font-display font-bold text-white text-2xl mb-2">
-                      "Where wellness<br />meets flavour."
+                      "Where Care<br />meets flavour."
                     </p>
-                    <p className="text-white/60 font-body text-sm">— MC Bliss Philosophy</p>
+                    <p className="text-white/60 font-body text-sm">— MC Bliss</p>
+                    <p className="text-white/60 font-body text-sm">— Sarah Sweet Confectionaries</p>
                   </div>
                 </div>
 
@@ -87,11 +88,10 @@ export function BrandStory() {
 
             {/* Body */}
             <p className="text-gray-600 font-body text-base leading-relaxed mb-8">
-              At MC Bliss, we reject shortcuts. Every ingredient is carefully selected
-              from trusted local farms. Every meal is prepared in small batches to
+              At MC Bliss, we prepare food with care. Every meal is prepared in small batches to
               preserve nutrients and honour the food's natural story. We are not a
-              restaurant that simply serves meals — we are a wellness destination
-              that happens to make food extraordinary.
+              restaurant that simply serves meals — we serve healthy and nourishing
+              food and drinks.
             </p>
 
             {/* Feature list */}

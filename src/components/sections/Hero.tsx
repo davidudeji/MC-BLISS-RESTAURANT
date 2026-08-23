@@ -58,7 +58,7 @@ export function Hero() {
         >
           <Leaf size={14} className="text-[#D4A373]" />
           <span className="text-[#D4A373] text-xs font-body font-semibold tracking-widest uppercase">
-            Farm-to-Table · Lagos, Nigeria
+            Provide Healthy & Nourishing Food · Abuja, Nigeria
           </span>
           <Leaf size={14} className="text-[#D4A373]" />
         </motion.div>
@@ -76,7 +76,7 @@ export function Hero() {
           transition={{ duration: 0.7, delay: 0.1 }}
         >
           Honest food,{' '}
-          <span className="text-[#D4A373]">grown properly,</span>
+          <span className="text-[#D4A373]">prepared carefully,</span>
           <br />
           served daily.
         </motion.h1>
@@ -89,8 +89,7 @@ export function Hero() {
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6, delay: 0.2 }}
         >
-          Experience nutrient-dense culinary art crafted from sustainable,
-          farm-fresh ingredients. Every meal tells a story of care.
+          Experience nutrient-dense dishes crafted from fresh ingredients. Every meal tells a story of care.
         </motion.p>
 
         {/* CTAs */}

@@ -250,7 +250,7 @@ function MenuItemModal({ isOpen, onClose, onSave, item }: MenuItemModalProps) {
         <Input
           id="name"
           label="Food Title"
-          placeholder="e.g., Organic Avocado & Egg Bowl"
+          placeholder="e.g., White Rice and Stew"
           required
           error={errors.name?.message}
           {...register('name')}

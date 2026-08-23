@@ -40,24 +40,24 @@ export function ContactSection() {
               {
                 icon: MapPin,
                 title: 'Our Location',
-                lines: ['12 Wellness Avenue', 'Victoria Island, Lagos', 'Nigeria'],
+                lines: ['MC Bliss Restaurant and Catering Service', 'KARU/JIKWOYI ROAD CBN JUNCTION, ABUJA', 'Nigeria'],
               },
               {
                 icon: Phone,
                 title: 'Phone',
-                lines: ['+234 801 234 5678'],
-                link: 'tel:+2348012345678',
+                lines: ['+234 806 5819 988'],
+                link: 'tel:+2348065819988',
               },
               {
                 icon: Mail,
                 title: 'Email',
-                lines: ['hello@mcbliss.ng'],
-                link: 'mailto:hello@mcbliss.ng',
+                lines: ['mcblissrestaurant@gmail.com'],
+                link: 'mailto:mcblissrestaurant@gmail.com',
               },
               {
                 icon: Clock,
                 title: 'Opening Hours',
-                lines: ['Mon–Sat: 7:00 AM – 8:00 PM', 'Sunday: 9:00 AM – 6:00 PM'],
+                lines: ['Mon–Sat: 8:00 AM – 8:00 PM'],
               },
             ].map(({ icon: Icon, title, lines, link }) => (
               <div key={title} className="flex items-start gap-4">
@@ -137,7 +137,7 @@ export function ContactSection() {
                   <label className="text-sm font-medium text-[#111827] font-body">Email</label>
                   <input
                     type="email"
-                    placeholder="your@email.com"
+                    placeholder="mcblissrestaurant@gmail.com"
                     required
                     className="px-4 py-3 text-sm font-body bg-[#FDFBF7] border border-[#E5E0D8] rounded-xl focus:outline-none focus:border-[#1E392A] focus:ring-2 focus:ring-[#1E392A]/10 transition-colors"
                   />
