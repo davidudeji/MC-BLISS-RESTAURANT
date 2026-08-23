@@ -1,5 +1,5 @@
 import { motion } from 'framer-motion';
-import { MapPin, Phone, Mail, Clock, Instagram, Twitter, Facebook } from 'lucide-react';
+import { AtSign, Link2, MapPin, MessageCircle, Phone, Mail, Clock } from 'lucide-react';
 
 export function ContactSection() {
   return (
@@ -88,9 +88,9 @@ export function ContactSection() {
               <p className="font-body font-semibold text-[#111827] text-sm mb-3">Follow Us</p>
               <div className="flex items-center gap-3">
                 {[
-                  { icon: Instagram, label: 'Instagram', href: '#' },
-                  { icon: Twitter, label: 'Twitter', href: '#' },
-                  { icon: Facebook, label: 'Facebook', href: '#' },
+                  { icon: AtSign, label: 'Instagram', href: '#' },
+                  { icon: MessageCircle, label: 'Twitter', href: '#' },
+                  { icon: Link2, label: 'Facebook', href: '#' },
                 ].map(({ icon: Icon, label, href }) => (
                   <a
                     key={label}

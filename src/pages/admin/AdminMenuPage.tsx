@@ -29,10 +29,10 @@ const MOCK_ITEMS: MenuItem[] = [
 const itemSchema = z.object({
   name: z.string().min(2, 'Name is required'),
   description: z.string().min(10, 'Description must be at least 10 characters'),
-  price: z.number({ invalid_type_error: 'Enter a valid price' }).min(100, 'Minimum price is ₦100'),
+  price: z.number({ error: 'Enter a valid price' }).min(100, 'Minimum price is ₦100'),
   category: z.enum(['NUTRITIOUS_MEALS', 'SNACKS', 'YOGURT_BOWLS', 'ZOBO_JUICES']),
   status: z.enum(['AVAILABLE', 'OUT_OF_STOCK']),
-  batchQuantity: z.number({ invalid_type_error: 'Enter a valid quantity' }).min(0),
+  batchQuantity: z.number({ error: 'Enter a valid quantity' }).min(0),
   isFeatured: z.boolean(),
 });
 

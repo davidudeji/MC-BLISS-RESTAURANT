@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom';
-import { Instagram, Twitter, Facebook, MapPin, Phone, Mail, Leaf } from 'lucide-react';
+import { AtSign, Link2, MapPin, MessageCircle, Phone, Mail, Leaf } from 'lucide-react';
 
 function scrollToSection(id: string) {
   const el = document.getElementById(id);
@@ -34,9 +34,9 @@ export function Footer() {
             {/* Social */}
             <div className="flex items-center gap-3 mt-6">
               {[
-                { icon: Instagram, href: '#', label: 'Instagram' },
-                { icon: Twitter, href: '#', label: 'Twitter' },
-                { icon: Facebook, href: '#', label: 'Facebook' },
+                { icon: AtSign, href: '#', label: 'Instagram' },
+                { icon: MessageCircle, href: '#', label: 'Twitter' },
+                { icon: Link2, href: '#', label: 'Facebook' },
               ].map(({ icon: Icon, href, label }) => (
                 <a
                   key={label}
