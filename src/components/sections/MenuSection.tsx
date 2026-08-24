@@ -8,7 +8,6 @@ import { MenuGridSkeleton } from '../ui/Skeleton';
 import { ErrorState, SearchEmpty, EmptyState } from '../ui/EmptyState';
 import type { MenuItem, Category } from '../../types';
 import { CATEGORY_LABELS } from '../../types';
-import { image } from 'framer-motion/client';
 
 // Realistic mock data to show while backend is not connected
 const MOCK_ITEMS: MenuItem[] = [
@@ -20,7 +19,7 @@ const MOCK_ITEMS: MenuItem[] = [
     price: 2000,
     category: 'NUTRITIOUS_MEALS',
     status: 'AVAILABLE',
-    imageUrl: null,
+    imageUrl: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85',
     imagePublicId: null,
     batchQuantity: 18,
     isFeatured: true,
@@ -35,7 +34,7 @@ const MOCK_ITEMS: MenuItem[] = [
     price: 2000,
     category: 'NUTRITIOUS_MEALS',
     status: 'AVAILABLE',
-    imageUrl: null,
+    imageUrl: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85',
     imagePublicId: null,
     batchQuantity: 8,
     isFeatured: false,
@@ -50,7 +49,7 @@ const MOCK_ITEMS: MenuItem[] = [
     price: 1500,
     category: 'YOGURT_BOWLS',
     status: 'AVAILABLE',
-    imageUrl: null,
+    imageUrl: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=85',
     imagePublicId: null,
     batchQuantity: 12,
     isFeatured: true,
@@ -65,7 +64,7 @@ const MOCK_ITEMS: MenuItem[] = [
     price: 2000,
     category: 'NUTRITIOUS_MEALS',
     status: 'AVAILABLE',
-    imageUrl: null,
+    imageUrl: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85',
     imagePublicId: null,
     batchQuantity: 25,
     isFeatured: false,
@@ -80,7 +79,7 @@ const MOCK_ITEMS: MenuItem[] = [
     price: 500,
     category: 'ZOBO_JUICES',
     status: 'AVAILABLE',
-    imageUrl: null,
+    imageUrl: 'https://images.unsplash.com/photo-1544145945-f90425340c7e?auto=format&fit=crop&w=900&q=85',
     imagePublicId: null,
     batchQuantity: 5,
     isFeatured: true,
@@ -95,7 +94,7 @@ const MOCK_ITEMS: MenuItem[] = [
     price: 2500,
     category: 'NUTRITIOUS_MEALS',
     status: 'OUT_OF_STOCK',
-    imageUrl: null,
+    imageUrl: 'https://images.unsplash.com/photo-1603133872878-684f208fb84b?auto=format&fit=crop&w=900&q=85',
     imagePublicId: null,
     batchQuantity: 0,
     isFeatured: false,
@@ -110,7 +109,7 @@ const MOCK_ITEMS: MenuItem[] = [
     price: 500,
     category: 'ZOBO_JUICES',
     status: 'AVAILABLE',
-    imageUrl: null,
+    imageUrl: 'https://images.unsplash.com/photo-1610970881699-44a5587cabec?auto=format&fit=crop&w=900&q=85',
     imagePublicId: null,
     batchQuantity: 10,
     isFeatured: false,
@@ -125,7 +124,7 @@ const MOCK_ITEMS: MenuItem[] = [
     price: 2000,
     category: 'SNACKS',
     status: 'AVAILABLE',
-    imageUrl: null,
+    imageUrl: 'https://images.unsplash.com/photo-1490474418585-ba9bad8fd0ea?auto=format&fit=crop&w=900&q=85',
     imagePublicId: null,
     batchQuantity: 30,
     isFeatured: false,
@@ -140,7 +139,7 @@ const MOCK_ITEMS: MenuItem[] = [
     price: 5000,
     category: 'YOGURT_BOWLS',
     status: 'AVAILABLE',
-    imageUrl: null,
+    imageUrl: 'https://images.unsplash.com/photo-1464965911861-746a04b4bca6?auto=format&fit=crop&w=900&q=85',
     imagePublicId: null,
     batchQuantity: 3,
     isFeatured: false,
