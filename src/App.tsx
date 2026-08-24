@@ -28,7 +28,7 @@ function AdminGuard({ children }: { children: React.ReactNode }) {
 
   useEffect(() => {
     checkAuth();
-  }, []);
+  }, [checkAuth]);
 
   if (isLoading) return <PageLoader />;
   if (!user) return <Navigate to="/admin/login" replace />;

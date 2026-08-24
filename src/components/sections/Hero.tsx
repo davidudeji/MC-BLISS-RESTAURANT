@@ -1,10 +1,7 @@
-import { useRef } from 'react';
 import { motion } from 'framer-motion';
 import { ArrowDown, Leaf } from 'lucide-react';
 
 export function Hero() {
-  const menuRef = useRef<HTMLElement | null>(null);
-
   const scrollToMenu = () => {
     const el = document.getElementById('menu');
     if (el) el.scrollIntoView({ behavior: 'smooth' });

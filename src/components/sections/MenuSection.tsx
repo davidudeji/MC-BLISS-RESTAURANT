@@ -1,11 +1,11 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
-import { Search, ChevronDown } from 'lucide-react';
+import { Search } from 'lucide-react';
 import api from '../../lib/api';
 import { MenuCard } from '../menu/MenuCard';
 import { MenuGridSkeleton } from '../ui/Skeleton';
-import { ErrorState, SearchEmpty, EmptyState } from '../ui/EmptyState';
+import { ErrorState, SearchEmpty } from '../ui/EmptyState';
 import type { MenuItem, Category } from '../../types';
 import { CATEGORY_LABELS } from '../../types';
 

@@ -1,6 +1,6 @@
 import { useState } from 'react';
-import { useQuery, useMutation, useQueryClient } from '@tanstack/react-query';
-import { Plus, Search, Pencil, Trash2, ToggleLeft, ToggleRight } from 'lucide-react';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
+import { Plus, Search, Pencil, Trash2 } from 'lucide-react';
 import { AdminLayout } from '../../components/admin/AdminLayout';
 import { Modal } from '../../components/ui/Modal';
 import { Badge } from '../../components/ui/Badge';
@@ -10,7 +10,7 @@ import { MenuGridSkeleton } from '../../components/ui/Skeleton';
 import { EmptyState } from '../../components/ui/EmptyState';
 import api from '../../lib/api';
 import { formatPrice } from '../../lib/utils';
-import type { MenuItem, Category, ItemStatus } from '../../types';
+import type { MenuItem } from '../../types';
 import { CATEGORY_LABELS } from '../../types';
 import toast from 'react-hot-toast';
 import { MenuItemVisual } from '../../components/menu/MenuItemVisual';
