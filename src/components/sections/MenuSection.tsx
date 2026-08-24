@@ -1,11 +1,11 @@
 import { useState, useMemo } from 'react';
 import { motion, AnimatePresence, type Variants } from 'framer-motion';
 import { useQuery } from '@tanstack/react-query';
-import { Search } from 'lucide-react';
+import { Search, ChevronDown } from 'lucide-react';
 import api from '../../lib/api';
 import { MenuCard } from '../menu/MenuCard';
 import { MenuGridSkeleton } from '../ui/Skeleton';
-import { ErrorState, SearchEmpty } from '../ui/EmptyState';
+import { ErrorState, SearchEmpty, EmptyState } from '../ui/EmptyState';
 import type { MenuItem, Category } from '../../types';
 import { CATEGORY_LABELS } from '../../types';
 
@@ -19,7 +19,7 @@ const MOCK_ITEMS: MenuItem[] = [
     price: 2000,
     category: 'NUTRITIOUS_MEALS',
     status: 'AVAILABLE',
-    imageUrl: 'https://images.unsplash.com/photo-1601050690597-df0568f70950?auto=format&fit=crop&w=900&q=85',
+    imageUrl: 'https://media.istockphoto.com/id/2175971935/photo/traditional-african-egusi-soup-with-pounded-yam.webp?a=1&b=1&s=612x612&w=0&k=20&c=oVKhRC-nBfa1PCWi0GGeho9KVGZWwHV2LUymwd6BIkE=',
     imagePublicId: null,
     batchQuantity: 18,
     isFeatured: true,
@@ -28,13 +28,13 @@ const MOCK_ITEMS: MenuItem[] = [
   },
   {
     id: '2',
-    name: 'Abacha',
-    slug: 'Abacha',
-    description: 'Abacha with fresh fish.',
+    name: 'Pepper Soup',
+    slug: 'Pepper Soup',
+    description: 'Pepper Soup with goat meat.',
     price: 2000,
     category: 'NUTRITIOUS_MEALS',
     status: 'AVAILABLE',
-    imageUrl: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85',
+    imageUrl: 'https://images.unsplash.com/photo-1763048443535-1243379234e2?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8M3x8cGVwcGVyJTIwc291cHxlbnwwfHwwfHx8MA%3D%3D',
     imagePublicId: null,
     batchQuantity: 8,
     isFeatured: false,
@@ -43,13 +43,13 @@ const MOCK_ITEMS: MenuItem[] = [
   },
   {
     id: '3',
-    name: 'Tropical Yogurt ',
-    slug: 'tropical-yogurt',
+    name: 'Yogurt',
+    slug: 'Yogurt',
     description: 'House-made probiotic yogurt with fresh tropical fruits, organic, coconut and edible flowers.',
     price: 1500,
     category: 'YOGURT_BOWLS',
     status: 'AVAILABLE',
-    imageUrl: 'https://images.unsplash.com/photo-1488477181946-6428a0291777?auto=format&fit=crop&w=900&q=85',
+    imageUrl: 'https://plus.unsplash.com/premium_photo-1664391867393-0cadd3159fab?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MXx8eW91Z2h1cnR8ZW58MHx8MHx8fDA%3D',
     imagePublicId: null,
     batchQuantity: 12,
     isFeatured: true,
@@ -58,13 +58,13 @@ const MOCK_ITEMS: MenuItem[] = [
   },
   {
     id: '4',
-    name: 'White Rice & Stew',
-    slug: 'White Rice & Stew',
-    description: 'White Rice & Stew with meat or fish.',
+    name: 'White Rice & Sauce',
+    slug: 'White Rice & Sauce',
+    description: 'White Rice & Sauce with meat or fish.',
     price: 2000,
     category: 'NUTRITIOUS_MEALS',
     status: 'AVAILABLE',
-    imageUrl: 'https://images.unsplash.com/photo-1512058564366-18510be2db19?auto=format&fit=crop&w=900&q=85',
+    imageUrl: 'https://images.unsplash.com/photo-1577281475566-78b57c5dfd4e?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.1.0&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Nnx8d2hpdGUlMjByaWNlJTIwYW5kJTIwc3Rld3xlbnwwfHwwfHx8MA%3D%3D',
     imagePublicId: null,
     batchQuantity: 25,
     isFeatured: false,
