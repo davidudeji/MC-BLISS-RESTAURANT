@@ -2,6 +2,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import { X, Minus, Plus, Trash2, ShoppingBag, ArrowRight } from 'lucide-react';
 import { useCartStore } from '../../store/cartStore';
 import { formatPrice } from '../../lib/utils';
+import { MenuItemVisual } from '../menu/MenuItemVisual';
 import { useNavigate } from 'react-router-dom';
 
 export function CartDrawer() {
@@ -92,7 +93,7 @@ export function CartDrawer() {
                         transition={{ duration: 0.2 }}
                         layout
                       >
-                        {/* Image/Emoji */}
+                        {/* Item visual */}
                         <div className="w-16 h-16 rounded-xl overflow-hidden bg-[#F5F2EC] flex-shrink-0">
                           {item.imageUrl ? (
                             <img
@@ -101,9 +102,7 @@ export function CartDrawer() {
                               className="w-full h-full object-cover"
                             />
                           ) : (
-                            <div className="w-full h-full flex items-center justify-center text-2xl bg-gradient-to-br from-[#1E392A] to-[#2d5040]">
-                              🥗
-                            </div>
+                            <MenuItemVisual item={item} compact />
                           )}
                         </div>
 

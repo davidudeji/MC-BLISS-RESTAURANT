@@ -38,6 +38,7 @@ export interface CartItem {
   menuItemId: string;
   name: string;
   price: number;
+  category: Category;
   imageUrl: string | null;
   quantity: number;
   batchQuantity: number;

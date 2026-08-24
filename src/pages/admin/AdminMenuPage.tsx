@@ -13,6 +13,7 @@ import { formatPrice } from '../../lib/utils';
 import type { MenuItem, Category, ItemStatus } from '../../types';
 import { CATEGORY_LABELS } from '../../types';
 import toast from 'react-hot-toast';
+import { MenuItemVisual } from '../../components/menu/MenuItemVisual';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
@@ -139,7 +140,7 @@ export default function AdminMenuPage() {
                   {item.imageUrl ? (
                     <img src={item.imageUrl} alt={item.name} className="w-full h-full object-cover" />
                   ) : (
-                    { NUTRITIOUS_MEALS: '🥗', SNACKS: '🌾', YOGURT_BOWLS: '🥣', ZOBO_JUICES: '🍹' }[item.category]
+                    <MenuItemVisual item={item} compact />
                   )}
                 </div>
 

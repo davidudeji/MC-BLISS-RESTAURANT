@@ -7,30 +7,7 @@ import { formatPrice, isLowStock, isUrgentStock } from '../../lib/utils';
 import type { MenuItem } from '../../types';
 import { CATEGORY_LABELS } from '../../types';
 import toast from 'react-hot-toast';
-
-function PlaceholderImage({ category }: { category: MenuItem['category'] }) {
-  const emojis: Record<MenuItem['category'], string> = {
-    NUTRITIOUS_MEALS: '🥗',
-    SNACKS: '🌾',
-    YOGURT_BOWLS: '🥣',
-    ZOBO_JUICES: '🍹',
-  };
-
-  const bgs: Record<MenuItem['category'], string> = {
-    NUTRITIOUS_MEALS: 'from-[#1E392A] to-[#2d5040]',
-    SNACKS: 'from-[#8B4513] to-[#D4A373]',
-    YOGURT_BOWLS: 'from-[#f5deb3] to-[#daa520]',
-    ZOBO_JUICES: 'from-[#6b0f1a] to-[#c0392b]',
-  };
-
-  return (
-    <div
-      className={`w-full h-full flex items-center justify-center bg-gradient-to-br ${bgs[category]}`}
-    >
-      <span className="text-6xl">{emojis[category]}</span>
-    </div>
-  );
-}
+import { MenuItemVisual } from './MenuItemVisual';
 
 interface MenuCardProps {
   item: MenuItem;
@@ -48,6 +25,7 @@ export function MenuCard({ item }: MenuCardProps) {
       menuItemId: item.id,
       name: item.name,
       price: item.price,
+      category: item.category,
       imageUrl: item.imageUrl,
       batchQuantity: item.batchQuantity,
       status: item.status,
@@ -84,7 +62,7 @@ export function MenuCard({ item }: MenuCardProps) {
           />
         ) : (
           <div className={isOutOfStock ? 'grayscale w-full h-full' : 'w-full h-full'}>
-            <PlaceholderImage category={item.category} />
+            <MenuItemVisual item={item} />
           </div>
         )}
 

@@ -8,6 +8,7 @@ import { useCartStore } from '../store/cartStore';
 import { Input, Textarea } from '../components/ui/Input';
 import { Button } from '../components/ui/Button';
 import { formatPrice } from '../lib/utils';
+import { MenuItemVisual } from '../components/menu/MenuItemVisual';
 import api from '../lib/api';
 import toast from 'react-hot-toast';
 
@@ -190,7 +191,7 @@ export default function CheckoutPage() {
                           className="w-full h-full object-cover"
                         />
                       ) : (
-                        '🥗'
+                        <MenuItemVisual item={item} compact />
                       )}
                     </div>
                     <div className="flex-1 min-w-0">
