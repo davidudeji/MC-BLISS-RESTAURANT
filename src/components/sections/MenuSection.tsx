@@ -34,7 +34,7 @@ const MOCK_ITEMS: MenuItem[] = [
     price: 2000,
     category: 'NUTRITIOUS_MEALS',
     status: 'AVAILABLE',
-    imageUrl: 'https://images.unsplash.com/photo-1547592180-85f173990554?auto=format&fit=crop&w=900&q=85',
+    imageUrl: 'https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=900&q=85',
     imagePublicId: null,
     batchQuantity: 8,
     isFeatured: false,
