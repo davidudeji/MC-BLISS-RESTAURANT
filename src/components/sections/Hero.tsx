@@ -126,10 +126,9 @@ export function Hero() {
           transition={{ duration: 0.6, delay: 0.5 }}
         >
           {[
-            '🌱 100% Organic',
-            '🍃 Farm-Fresh Daily',
-            '♻️ Sustainably Sourced',
-            '✨ Small-Batch Prep',
+            '100% Organic',
+            'Sustainably Sourced',
+            'Small-Batch Prep',
           ].map((tag) => (
             <span
               key={tag}
