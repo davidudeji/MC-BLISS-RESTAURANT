@@ -1,0 +1,914 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>MC Bliss | Loyalty Rewards Program</title>
+  <meta name="description" content="Track your MC Bliss loyalty streak, earn points daily, and unlock exclusive food rewards with our Frequent Diner program." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:ital,wght@0,200..800;1,200..800&family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --bg: #fafaf8;
+      --surface: #ffffff;
+      --surface-alt: #f4f1eb;
+      --border: #e8e2d9;
+      --text-primary: #1a1714;
+      --text-secondary: #5c534a;
+      --text-muted: #9c9189;
+      --accent: #c8601a;
+      --accent-light: #f5e6d8;
+      --accent-dark: #9e4b12;
+      --teal: #1a7a6e;
+      --teal-light: #d4eeeb;
+      --gold: #b8860b;
+      --gold-light: #fdf3d0;
+      --danger: #c0392b;
+      --danger-light: #fdecea;
+      --success: #1e7e5a;
+      --success-light: #d4f0e3;
+      --radius: 16px;
+      --radius-sm: 8px;
+      --shadow: 0 2px 16px rgba(26,23,20,0.08);
+      --shadow-lg: 0 8px 40px rgba(26,23,20,0.14);
+      --font-sans: 'Plus Jakarta Sans', system-ui, sans-serif;
+      --font-serif: 'Fraunces', Georgia, serif;
+    }
+
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: var(--font-sans);
+      background: var(--bg);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* ─── HEADER ─────────────────────────────────────────────── */
+    .site-header {
+      background: var(--surface);
+      border-bottom: 1px solid var(--border);
+      padding: 0 24px;
+      height: 64px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      box-shadow: 0 1px 8px rgba(26,23,20,0.06);
+    }
+    .logo {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: var(--text-primary);
+    }
+    .logo-icon {
+      width: 36px; height: 36px;
+      background: var(--accent);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      color: #fff;
+      font-size: 16px;
+    }
+    .logo-name { font-family: var(--font-serif); font-size: 20px; font-weight: 700; letter-spacing: -0.3px; }
+    .logo-name span { color: var(--accent); }
+    .header-nav { display: flex; gap: 8px; align-items: center; }
+    .btn-admin {
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      color: var(--text-secondary);
+      padding: 7px 16px;
+      border-radius: var(--radius-sm);
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+      text-decoration: none;
+      display: flex; align-items: center; gap: 6px;
+      transition: all 0.2s;
+    }
+    .btn-admin:hover { background: var(--border); color: var(--text-primary); }
+
+    /* ─── MAIN LAYOUT ─────────────────────────────────────────── */
+    main {
+      flex: 1;
+      max-width: 520px;
+      margin: 0 auto;
+      padding: 32px 20px 60px;
+      width: 100%;
+    }
+
+    /* ─── PROFILE CARD ────────────────────────────────────────── */
+    .profile-card {
+      background: linear-gradient(135deg, #1a1714 0%, #2d241e 60%, #3d3028 100%);
+      border-radius: var(--radius);
+      padding: 28px;
+      color: #fff;
+      position: relative;
+      overflow: hidden;
+      margin-bottom: 20px;
+      box-shadow: var(--shadow-lg);
+    }
+    .profile-card::before {
+      content: '';
+      position: absolute;
+      top: -60px; right: -60px;
+      width: 200px; height: 200px;
+      background: radial-gradient(circle, rgba(200,96,26,0.25) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .profile-card::after {
+      content: '';
+      position: absolute;
+      bottom: -40px; left: -40px;
+      width: 160px; height: 160px;
+      background: radial-gradient(circle, rgba(26,122,110,0.2) 0%, transparent 70%);
+      border-radius: 50%;
+    }
+    .profile-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: flex-start;
+      margin-bottom: 24px;
+      position: relative; z-index: 1;
+    }
+    .profile-avatar {
+      width: 52px; height: 52px;
+      background: rgba(255,255,255,0.12);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 22px;
+      border: 2px solid rgba(255,255,255,0.2);
+    }
+    .profile-badge {
+      background: var(--accent);
+      color: #fff;
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 20px;
+      letter-spacing: 0.5px;
+      text-transform: uppercase;
+    }
+    .profile-name {
+      font-family: var(--font-serif);
+      font-size: 22px;
+      font-weight: 700;
+      margin-bottom: 4px;
+      position: relative; z-index: 1;
+    }
+    .profile-sub {
+      font-size: 13px;
+      color: rgba(255,255,255,0.6);
+      position: relative; z-index: 1;
+    }
+    .profile-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr 1fr;
+      gap: 12px;
+      margin-top: 20px;
+      position: relative; z-index: 1;
+    }
+    .stat-block {
+      background: rgba(255,255,255,0.08);
+      border: 1px solid rgba(255,255,255,0.1);
+      border-radius: var(--radius-sm);
+      padding: 12px;
+      text-align: center;
+    }
+    .stat-val {
+      font-size: 22px;
+      font-weight: 800;
+      line-height: 1;
+      color: #fff;
+    }
+    .stat-val.fire { color: #ff8c42; }
+    .stat-val.gold { color: #ffd700; }
+    .stat-lbl {
+      font-size: 10px;
+      color: rgba(255,255,255,0.5);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+      margin-top: 4px;
+      display: flex; align-items: center; justify-content: center; gap: 4px;
+    }
+
+    /* ─── POINTS BAR ──────────────────────────────────────────── */
+    .points-section {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+    .points-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      margin-bottom: 14px;
+    }
+    .points-label {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      display: flex; align-items: center; gap: 6px;
+    }
+    .points-label i { color: var(--gold); }
+    .points-count {
+      font-size: 18px;
+      font-weight: 800;
+      color: var(--accent);
+    }
+    .progress-track {
+      background: var(--surface-alt);
+      border-radius: 100px;
+      height: 10px;
+      overflow: hidden;
+      position: relative;
+    }
+    .progress-fill {
+      height: 100%;
+      background: linear-gradient(90deg, var(--accent) 0%, #e8853c 100%);
+      border-radius: 100px;
+      transition: width 0.7s cubic-bezier(0.4,0,0.2,1);
+      position: relative;
+    }
+    .progress-fill::after {
+      content: '';
+      position: absolute;
+      top: 0; right: 0;
+      width: 6px; height: 100%;
+      background: rgba(255,255,255,0.4);
+      border-radius: 100px;
+    }
+    .progress-labels {
+      display: flex;
+      justify-content: space-between;
+      margin-top: 6px;
+    }
+    .progress-labels span {
+      font-size: 11px;
+      color: var(--text-muted);
+    }
+
+    /* ─── SCAN BUTTON ─────────────────────────────────────────── */
+    .scan-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 28px 22px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+      text-align: center;
+    }
+    .scan-title {
+      font-family: var(--font-serif);
+      font-size: 18px;
+      font-weight: 700;
+      margin-bottom: 6px;
+    }
+    .scan-subtitle {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 22px;
+      line-height: 1.5;
+    }
+    .qr-box {
+      width: 120px; height: 120px;
+      margin: 0 auto 20px;
+      background: var(--surface-alt);
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      color: var(--text-muted);
+      font-size: 36px;
+      transition: all 0.3s;
+      cursor: pointer;
+    }
+    .qr-box:hover {
+      border-color: var(--accent);
+      color: var(--accent);
+      background: var(--accent-light);
+    }
+    .qr-box span { font-size: 11px; font-weight: 600; }
+    .btn-scan {
+      width: 100%;
+      background: linear-gradient(135deg, var(--accent) 0%, var(--accent-dark) 100%);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 15px 24px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.25s;
+      box-shadow: 0 4px 14px rgba(200,96,26,0.35);
+    }
+    .btn-scan:hover:not(:disabled) {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(200,96,26,0.45);
+    }
+    .btn-scan:active:not(:disabled) { transform: translateY(0); }
+    .btn-scan:disabled {
+      background: var(--surface-alt);
+      color: var(--text-muted);
+      box-shadow: none;
+      cursor: not-allowed;
+    }
+
+    /* ─── ALERTS ──────────────────────────────────────────────── */
+    .alert {
+      border-radius: var(--radius-sm);
+      padding: 13px 16px;
+      font-size: 13.5px;
+      font-weight: 600;
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin-top: 12px;
+      animation: fadeSlideIn 0.3s ease;
+      line-height: 1.5;
+    }
+    .alert i { font-size: 15px; flex-shrink: 0; margin-top: 1px; }
+    .alert-warning { background: var(--danger-light); color: var(--danger); border: 1px solid rgba(192,57,43,0.2); }
+    .alert-success { background: var(--success-light); color: var(--success); border: 1px solid rgba(30,126,90,0.2); }
+    .alert-info { background: var(--teal-light); color: var(--teal); border: 1px solid rgba(26,122,110,0.2); }
+
+    @keyframes fadeSlideIn {
+      from { opacity: 0; transform: translateY(-6px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ─── STREAK CALENDAR ─────────────────────────────────────── */
+    .streak-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+    .streak-card-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .streak-card-title i { color: var(--accent); }
+    .streak-dots {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+    .streak-dot {
+      width: 36px; height: 36px;
+      border-radius: 8px;
+      background: var(--surface-alt);
+      border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 13px;
+      color: var(--text-muted);
+      font-weight: 600;
+      transition: all 0.3s;
+    }
+    .streak-dot.active {
+      background: linear-gradient(135deg, var(--accent), var(--accent-dark));
+      border-color: var(--accent-dark);
+      color: #fff;
+      box-shadow: 0 2px 8px rgba(200,96,26,0.3);
+    }
+    .streak-dot.today {
+      background: var(--gold-light);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+
+    /* ─── REWARD MODAL ────────────────────────────────────────── */
+    .reward-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(26,23,20,0.75);
+      backdrop-filter: blur(6px);
+      z-index: 200;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      animation: fadeIn 0.3s ease;
+    }
+    .reward-overlay.hidden { display: none; }
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .reward-modal {
+      background: var(--surface);
+      border-radius: 20px;
+      padding: 36px 28px;
+      max-width: 380px;
+      width: 100%;
+      text-align: center;
+      box-shadow: var(--shadow-lg);
+      animation: popIn 0.4s cubic-bezier(0.34,1.56,0.64,1);
+      position: relative;
+    }
+    @keyframes popIn {
+      from { opacity: 0; transform: scale(0.85); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .reward-icon-wrap {
+      width: 80px; height: 80px;
+      background: var(--gold-light);
+      border-radius: 50%;
+      display: flex; align-items: center; justify-content: center;
+      margin: 0 auto 16px;
+      font-size: 36px;
+      color: var(--gold);
+      border: 3px solid rgba(184,134,11,0.2);
+    }
+    .reward-tag {
+      background: var(--gold-light);
+      color: var(--gold);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 12px;
+      border-radius: 20px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      display: inline-block;
+      margin-bottom: 12px;
+    }
+    .reward-headline {
+      font-family: var(--font-serif);
+      font-size: 24px;
+      font-weight: 800;
+      margin-bottom: 8px;
+      color: var(--text-primary);
+    }
+    .reward-food {
+      font-size: 18px;
+      font-weight: 700;
+      color: var(--accent);
+      margin: 16px 0;
+      padding: 14px;
+      background: var(--accent-light);
+      border-radius: var(--radius-sm);
+      border-left: 3px solid var(--accent);
+    }
+    .reward-desc {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      line-height: 1.6;
+      margin-bottom: 24px;
+    }
+    .btn-claim {
+      width: 100%;
+      background: linear-gradient(135deg, var(--gold) 0%, #9a6f08 100%);
+      color: #fff;
+      border: none;
+      border-radius: var(--radius-sm);
+      padding: 14px 24px;
+      font-size: 15px;
+      font-weight: 700;
+      font-family: var(--font-sans);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: all 0.25s;
+      box-shadow: 0 4px 14px rgba(184,134,11,0.35);
+    }
+    .btn-claim:hover {
+      transform: translateY(-1px);
+      box-shadow: 0 6px 20px rgba(184,134,11,0.45);
+    }
+
+    /* ─── MENU PERKS ──────────────────────────────────────────── */
+    .perks-card {
+      background: var(--surface);
+      border: 1px solid var(--border);
+      border-radius: var(--radius);
+      padding: 22px;
+      margin-bottom: 16px;
+      box-shadow: var(--shadow);
+    }
+    .perks-title {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--text-secondary);
+      margin-bottom: 14px;
+      display: flex; align-items: center; gap: 6px;
+    }
+    .perks-title i { color: var(--teal); }
+    .perk-list { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .perk-item {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px;
+      background: var(--surface-alt);
+      border-radius: var(--radius-sm);
+      border: 1px solid var(--border);
+    }
+    .perk-icon {
+      width: 36px; height: 36px;
+      background: var(--accent-light);
+      color: var(--accent);
+      border-radius: 8px;
+      display: flex; align-items: center; justify-content: center;
+      font-size: 14px;
+      flex-shrink: 0;
+    }
+    .perk-info { flex: 1; }
+    .perk-name { font-size: 13.5px; font-weight: 700; color: var(--text-primary); }
+    .perk-note { font-size: 11px; color: var(--text-muted); margin-top: 2px; }
+    .perk-stock {
+      font-size: 11px;
+      font-weight: 700;
+      background: var(--teal-light);
+      color: var(--teal);
+      padding: 3px 8px;
+      border-radius: 20px;
+    }
+    .perk-stock.low { background: var(--danger-light); color: var(--danger); }
+
+    /* ─── FOOTER ──────────────────────────────────────────────── */
+    footer {
+      text-align: center;
+      padding: 20px;
+      font-size: 12px;
+      color: var(--text-muted);
+      border-top: 1px solid var(--border);
+    }
+    footer a { color: var(--accent); text-decoration: none; }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header class="site-header">
+    <a href="loyalty.html" class="logo">
+      <div class="logo-icon"><i class="fa-solid fa-utensils"></i></div>
+      <span class="logo-name">MC <span>Bliss</span></span>
+    </a>
+    <nav class="header-nav">
+      <a href="admin.html" class="btn-admin">
+        <i class="fa-solid fa-chart-line"></i> Admin Panel
+      </a>
+    </nav>
+  </header>
+
+  <!-- MAIN -->
+  <main>
+
+    <!-- Profile Card -->
+    <div class="profile-card" id="profileCard">
+      <div class="profile-top">
+        <div class="profile-avatar"><i class="fa-solid fa-user"></i></div>
+        <span class="profile-badge" id="tierBadge">Bronze Member</span>
+      </div>
+      <div class="profile-name" id="profileName">Loyal Diner</div>
+      <div class="profile-sub">MC Bliss Frequent Diner Program</div>
+      <div class="profile-stats">
+        <div class="stat-block">
+          <div class="stat-val fire" id="streakCount">0</div>
+          <div class="stat-lbl"><i class="fa-solid fa-fire"></i> Streak</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-val gold" id="pointsDisplay">0</div>
+          <div class="stat-lbl"><i class="fa-solid fa-star"></i> Points</div>
+        </div>
+        <div class="stat-block">
+          <div class="stat-val" id="lifetimeStreak">0</div>
+          <div class="stat-lbl"><i class="fa-solid fa-trophy"></i> Best</div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Points Progress -->
+    <div class="points-section">
+      <div class="points-header">
+        <div class="points-label"><i class="fa-solid fa-star"></i> Progress to Reward</div>
+        <div class="points-count"><span id="progressPoints">0</span> / 1,000 pts</div>
+      </div>
+      <div class="progress-track">
+        <div class="progress-fill" id="progressBar" style="width: 0%"></div>
+      </div>
+      <div class="progress-labels">
+        <span>0 pts</span>
+        <span id="progressMsg">Scan daily to earn points</span>
+        <span>1,000 pts</span>
+      </div>
+    </div>
+
+    <!-- Scan Card -->
+    <div class="scan-card">
+      <div class="scan-title">Daily Check-In</div>
+      <div class="scan-subtitle">Scan your loyalty QR code once per day to keep your streak alive and earn 100 points.</div>
+      <div class="qr-box" id="qrBox" onclick="handleScan()">
+        <i class="fa-solid fa-qrcode"></i>
+        <span>Tap to Scan</span>
+      </div>
+      <button class="btn-scan" id="scanBtn" onclick="handleScan()">
+        <i class="fa-solid fa-qrcode"></i> Clock In for Today
+      </button>
+      <div id="alertBox"></div>
+    </div>
+
+    <!-- Streak Calendar -->
+    <div class="streak-card">
+      <div class="streak-card-title"><i class="fa-solid fa-calendar-days"></i> This Week's Streak</div>
+      <div class="streak-dots" id="streakDots"></div>
+    </div>
+
+    <!-- Menu Perks -->
+    <div class="perks-card">
+      <div class="perks-title"><i class="fa-solid fa-gift"></i> Redeemable Reward Pool</div>
+      <ul class="perk-list">
+        <li class="perk-item">
+          <div class="perk-icon"><i class="fa-solid fa-burger"></i></div>
+          <div class="perk-info">
+            <div class="perk-name">Gourmet Truffle Burger</div>
+            <div class="perk-note">Premium wagyu patty, black truffle aioli</div>
+          </div>
+          <span class="perk-stock">In Pool</span>
+        </li>
+        <li class="perk-item">
+          <div class="perk-icon"><i class="fa-solid fa-pizza-slice"></i></div>
+          <div class="perk-info">
+            <div class="perk-name">Wood-Fired Diavola Pizza</div>
+            <div class="perk-note">Spicy salami, mozzarella, chilli oil</div>
+          </div>
+          <span class="perk-stock">In Pool</span>
+        </li>
+        <li class="perk-item">
+          <div class="perk-icon"><i class="fa-solid fa-bowl-food"></i></div>
+          <div class="perk-info">
+            <div class="perk-name">Chef's Special Pasta</div>
+            <div class="perk-note">Hand-rolled tagliatelle, slow-braised ragu</div>
+          </div>
+          <span class="perk-stock">In Pool</span>
+        </li>
+        <li class="perk-item">
+          <div class="perk-icon"><i class="fa-solid fa-fish"></i></div>
+          <div class="perk-info">
+            <div class="perk-name">Pan-Seared Salmon Platter</div>
+            <div class="perk-note">Herb butter, lemon-caper velouté</div>
+          </div>
+          <span class="perk-stock">In Pool</span>
+        </li>
+        <li class="perk-item">
+          <div class="perk-icon"><i class="fa-solid fa-drumstick-bite"></i></div>
+          <div class="perk-info">
+            <div class="perk-name">Smoky Jerk Chicken Bowl</div>
+            <div class="perk-note">Grilled chicken thigh, coconut rice, slaw</div>
+          </div>
+          <span class="perk-stock low">Only 3 available</span>
+        </li>
+        <li class="perk-item">
+          <div class="perk-icon"><i class="fa-solid fa-pepper-hot"></i></div>
+          <div class="perk-info">
+            <div class="perk-name">Spiced Lamb Skewer Platter</div>
+            <div class="perk-note">Chargrilled lamb, tzatziki, warm flatbread</div>
+          </div>
+          <span class="perk-stock">In Pool</span>
+        </li>
+        <li class="perk-item">
+          <div class="perk-icon"><i class="fa-solid fa-cake-candles"></i></div>
+          <div class="perk-info">
+            <div class="perk-name">Meat Pie (House-Baked)</div>
+            <div class="perk-note">Slow-cooked beef filling, buttery shortcrust</div>
+          </div>
+          <span class="perk-stock low">Only 3 meat pies available</span>
+        </li>
+      </ul>
+    </div>
+
+  </main>
+
+  <!-- REWARD MODAL -->
+  <div class="reward-overlay hidden" id="rewardOverlay">
+    <div class="reward-modal">
+      <div class="reward-icon-wrap"><i class="fa-solid fa-gift"></i></div>
+      <div class="reward-tag"><i class="fa-solid fa-star"></i> 1,000 Points Milestone</div>
+      <div class="reward-headline">Reward Unlocked!</div>
+      <p style="font-size:13.5px;color:var(--text-muted);line-height:1.6;margin-bottom:4px;">
+        You have earned enough points for a complimentary dish. Your reward today:
+      </p>
+      <div class="reward-food" id="rewardFoodName">—</div>
+      <p class="reward-desc">Show this screen to our staff to redeem your complimentary meal. Claiming will reset your points tally — your streak stays intact.</p>
+      <button class="btn-claim" onclick="claimReward()">
+        <i class="fa-solid fa-check-circle"></i> Claim Reward &amp; Reset Points
+      </button>
+    </div>
+  </div>
+
+  <footer>
+    <p>MC Bliss Frequent Diner Program &mdash; <a href="admin.html">View Admin Dashboard</a></p>
+  </footer>
+
+  <script>
+    /* ─── CONSTANTS ──────────────────────────────────────────── */
+    const STORAGE_KEY = 'restaurant_loyalty_data';
+    const POINTS_PER_SCAN = 100;
+    const REWARD_THRESHOLD = 1000;
+
+    const REWARD_POOL = [
+      'Gourmet Truffle Burger',
+      'Wood-Fired Diavola Pizza',
+      "Chef's Special Pasta",
+      'Pan-Seared Salmon Platter',
+      'Smoky Jerk Chicken Bowl',
+      'Spiced Lamb Skewer Platter',
+      'Meat Pie (House-Baked)',
+    ];
+
+    /* ─── STATE ──────────────────────────────────────────────── */
+    function defaultState() {
+      return {
+        streak: 0,
+        points: 0,
+        lifetimeBestStreak: 0,
+        lastScanDate: null,
+        pendingReward: null,
+      };
+    }
+
+    function loadState() {
+      try {
+        const raw = localStorage.getItem(STORAGE_KEY);
+        if (!raw) return defaultState();
+        return { ...defaultState(), ...JSON.parse(raw) };
+      } catch { return defaultState(); }
+    }
+
+    function saveState(state) {
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+    }
+
+    let state = loadState();
+
+    /* ─── SCAN LOGIC ─────────────────────────────────────────── */
+    function handleScan() {
+      const today = new Date().toDateString();
+      const alertBox = document.getElementById('alertBox');
+
+      /* Daily lockout */
+      if (state.lastScanDate === today) {
+        alertBox.innerHTML = `
+          <div class="alert alert-warning">
+            <i class="fa-solid fa-triangle-exclamation"></i>
+            <span>You have already clocked in today (<strong>${today}</strong>). Please return tomorrow to continue your streak.</span>
+          </div>`;
+        return;
+      }
+
+      /* Streak evaluation */
+      if (state.lastScanDate === null) {
+        /* First scan ever */
+        state.streak = 1;
+      } else {
+        const last = new Date(state.lastScanDate);
+        const now  = new Date(today);
+        const diffDays = Math.round((now - last) / 86400000);
+        if (diffDays === 1) {
+          state.streak += 1;
+        } else {
+          state.streak = 1; /* streak broken */
+        }
+      }
+
+      /* Points engine */
+      state.points += POINTS_PER_SCAN;
+      state.lastScanDate = today;
+
+      /* Lifetime best */
+      if (state.streak > state.lifetimeBestStreak) {
+        state.lifetimeBestStreak = state.streak;
+      }
+
+      /* Reward threshold check */
+      if (state.points >= REWARD_THRESHOLD && !state.pendingReward) {
+        state.pendingReward = REWARD_POOL[Math.floor(Math.random() * REWARD_POOL.length)];
+      }
+
+      saveState(state);
+      renderUI();
+
+      /* Show success message */
+      const breakMsg = state.streak === 1 && state.lastScanDate !== today
+        ? ' Your streak was reset — start fresh!'
+        : '';
+      alertBox.innerHTML = `
+        <div class="alert alert-success">
+          <i class="fa-solid fa-circle-check"></i>
+          <span>Check-in successful! +${POINTS_PER_SCAN} points added. Streak: <strong>${state.streak} day${state.streak !== 1 ? 's' : ''}</strong>.${breakMsg}</span>
+        </div>`;
+
+      /* Show reward modal if milestone hit */
+      if (state.pendingReward) {
+        setTimeout(() => showRewardModal(), 700);
+      }
+    }
+
+    /* ─── CLAIM REWARD ───────────────────────────────────────── */
+    function claimReward() {
+      state.points = 0;
+      state.pendingReward = null;
+      saveState(state);
+      document.getElementById('rewardOverlay').classList.add('hidden');
+      renderUI();
+      document.getElementById('alertBox').innerHTML = `
+        <div class="alert alert-info">
+          <i class="fa-solid fa-circle-info"></i>
+          <span>Reward claimed! Your points have been reset. Keep scanning daily to earn your next reward.</span>
+        </div>`;
+    }
+
+    /* ─── RENDER ─────────────────────────────────────────────── */
+    function showRewardModal() {
+      document.getElementById('rewardFoodName').textContent = state.pendingReward;
+      document.getElementById('rewardOverlay').classList.remove('hidden');
+    }
+
+    function renderUI() {
+      const today = new Date().toDateString();
+      const alreadyScanned = state.lastScanDate === today;
+
+      /* Stats */
+      document.getElementById('streakCount').textContent = state.streak;
+      document.getElementById('pointsDisplay').textContent = state.points;
+      document.getElementById('progressPoints').textContent = state.points;
+      document.getElementById('lifetimeStreak').textContent = state.lifetimeBestStreak;
+
+      /* Progress bar */
+      const pct = Math.min((state.points / REWARD_THRESHOLD) * 100, 100);
+      document.getElementById('progressBar').style.width = pct + '%';
+      const remaining = REWARD_THRESHOLD - state.points;
+      document.getElementById('progressMsg').textContent =
+        state.points >= REWARD_THRESHOLD
+          ? 'Reward unlocked!'
+          : `${remaining} pts to reward`;
+
+      /* Scan button */
+      const scanBtn = document.getElementById('scanBtn');
+      if (alreadyScanned) {
+        scanBtn.disabled = true;
+        scanBtn.innerHTML = '<i class="fa-solid fa-clock"></i> Return Tomorrow';
+      } else {
+        scanBtn.disabled = false;
+        scanBtn.innerHTML = '<i class="fa-solid fa-qrcode"></i> Clock In for Today';
+      }
+
+      /* Tier badge */
+      const badge = document.getElementById('tierBadge');
+      if (state.streak >= 30) { badge.textContent = 'Platinum Member'; }
+      else if (state.streak >= 14) { badge.textContent = 'Gold Member'; }
+      else if (state.streak >= 7)  { badge.textContent = 'Silver Member'; }
+      else { badge.textContent = 'Bronze Member'; }
+
+      /* Streak dots — last 7 days */
+      const dotsContainer = document.getElementById('streakDots');
+      const days = ['Sun','Mon','Tue','Wed','Thu','Fri','Sat'];
+      dotsContainer.innerHTML = '';
+      for (let i = 6; i >= 0; i--) {
+        const d = new Date();
+        d.setDate(d.getDate() - i);
+        const dStr = d.toDateString();
+        const dayLabel = days[d.getDay()];
+        const dot = document.createElement('div');
+        dot.className = 'streak-dot';
+        dot.textContent = dayLabel;
+
+        if (dStr === today) dot.classList.add('today');
+        /* Mark as active if within current streak window */
+        if (i < state.streak) dot.classList.add('active');
+        dotsContainer.appendChild(dot);
+      }
+
+      /* Reward modal — persist on refresh */
+      if (state.pendingReward) showRewardModal();
+    }
+
+    /* ─── INIT ───────────────────────────────────────────────── */
+    renderUI();
+  </script>
+</body>
+</html>

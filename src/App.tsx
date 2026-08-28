@@ -7,12 +7,14 @@ import { useAuthStore } from './store/authStore';
 
 // Lazy-load pages for code splitting
 const LandingPage = lazy(() => import('./pages/LandingPage'));
+const LoyaltyPage = lazy(() => import('./pages/LoyaltyPage'));
 const CheckoutPage = lazy(() => import('./pages/CheckoutPage'));
 const OrderConfirmationPage = lazy(() => import('./pages/OrderConfirmationPage'));
 const AdminLoginPage = lazy(() => import('./pages/admin/AdminLoginPage'));
 const AdminDashboardPage = lazy(() => import('./pages/admin/AdminDashboardPage'));
 const AdminMenuPage = lazy(() => import('./pages/admin/AdminMenuPage'));
 const AdminOrdersPage = lazy(() => import('./pages/admin/AdminOrdersPage'));
+const AdminLoyaltyPage = lazy(() => import('./pages/admin/AdminLoyaltyPage'));
 
 const queryClient = new QueryClient({
   defaultOptions: {
@@ -43,6 +45,7 @@ export default function App() {
           <Routes>
             {/* Public */}
             <Route path="/" element={<LandingPage />} />
+            <Route path="/loyalty" element={<LoyaltyPage />} />
             <Route path="/checkout" element={<CheckoutPage />} />
             <Route path="/order-confirmation" element={<OrderConfirmationPage />} />
 
@@ -69,6 +72,14 @@ export default function App() {
               element={
                 <AdminGuard>
                   <AdminOrdersPage />
+                </AdminGuard>
+              }
+            />
+            <Route
+              path="/admin/loyalty"
+              element={
+                <AdminGuard>
+                  <AdminLoyaltyPage />
                 </AdminGuard>
               }
             />

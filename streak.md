@@ -2,6 +2,7 @@ Act as an expert Full-Stack Web Developer. Build a single-page or two-file front
 
 ### 1. VISUAL SYSTEM & ICON REPLACEMENT
 - Remove all emojis from the user interface completely.
+- Use the appropriate text for menu items e.g "only 3 meat pie available for meat pie title"
 - Use Font Awesome v6 (via CDN link: https://cloudflare.com) to display clean, professional iconography.
 - Map the UI elements to appropriate restaurant, streak, and metric icons (e.g., fa-utensils, fa-fire, fa-star, fa-gift, fa-qrcode, fa-chart-line).
 - Style the UI using modern, clean CSS with a warm restaurant-friendly color palette (such as deep charcoal backgrounds for admin, clean white cards for users, teal or orange for actions).

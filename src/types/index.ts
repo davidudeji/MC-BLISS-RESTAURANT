@@ -91,6 +91,15 @@ export interface DashboardStats {
   todayRevenue: number;
 }
 
+export type LoyaltyTier = 'Bronze Member' | 'Silver Member' | 'Gold Member' | 'Platinum Member';
+
+export function getLoyaltyTier(streak: number): LoyaltyTier {
+  if (streak >= 30) return 'Platinum Member';
+  if (streak >= 14) return 'Gold Member';
+  if (streak >= 7) return 'Silver Member';
+  return 'Bronze Member';
+}
+
 export const CATEGORY_LABELS: Record<Category | 'ALL', string> = {
   ALL: 'All',
   NUTRITIOUS_MEALS: 'Nutritious Meals',

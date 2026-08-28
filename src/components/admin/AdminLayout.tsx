@@ -3,7 +3,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
 import {
   LayoutDashboard, UtensilsCrossed, ClipboardList,
-  LogOut, Menu, ChevronRight, Leaf,
+  LogOut, Menu, ChevronRight, Leaf, Flame,
 } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 import toast from 'react-hot-toast';
@@ -12,6 +12,7 @@ const NAV = [
   { label: 'Dashboard', href: '/admin', icon: LayoutDashboard },
   { label: 'Menu', href: '/admin/menu', icon: UtensilsCrossed },
   { label: 'Orders', href: '/admin/orders', icon: ClipboardList },
+  { label: 'Loyalty', href: '/admin/loyalty', icon: Flame },
 ];
 
 interface AdminLayoutProps {

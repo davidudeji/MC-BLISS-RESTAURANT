@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Link, useLocation } from 'react-router-dom';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, Menu, X } from 'lucide-react';
+import { ShoppingBag, Menu, X, Flame } from 'lucide-react';
 import { useCartStore } from '../../store/cartStore';
 import { cn } from '../../lib/utils';
 
@@ -10,6 +10,7 @@ const NAV_LINKS = [
   { label: 'Menu', href: '#menu' },
   { label: 'Services', href: '#services' },
   { label: 'Contact', href: '#contact' },
+  { label: 'Loyalty', href: '/loyalty', route: true },
 ];
 
 function scrollToSection(id: string) {
@@ -22,6 +23,7 @@ export function Navbar() {
   const [mobileOpen, setMobileOpen] = useState(false);
   const { totalItems, openCart } = useCartStore();
   const location = useLocation();
+  const navigate = useNavigate();
   const isLanding = location.pathname === '/';
 
   useEffect(() => {
@@ -75,15 +77,26 @@ export function Navbar() {
 
             {/* Desktop Nav */}
             <nav className="hidden md:flex items-center gap-8" aria-label="Main navigation">
-              {NAV_LINKS.map((link) => (
-                <button
-                  key={link.label}
-                  onClick={() => scrollToSection(link.href.replace('#', ''))}
-                  className="text-white/80 hover:text-white text-sm font-medium font-body transition-colors duration-200 hover:text-[#D4A373]"
-                >
-                  {link.label}
-                </button>
-              ))}
+              {NAV_LINKS.map((link) =>
+                link.route ? (
+                  <Link
+                    key={link.label}
+                    to={link.href}
+                    className="flex items-center gap-1.5 text-white/80 hover:text-[#D4A373] text-sm font-medium font-body transition-colors duration-200"
+                  >
+                    <Flame size={13} />
+                    {link.label}
+                  </Link>
+                ) : (
+                  <button
+                    key={link.label}
+                    onClick={() => scrollToSection(link.href.replace('#', ''))}
+                    className="text-white/80 hover:text-white text-sm font-medium font-body transition-colors duration-200 hover:text-[#D4A373]"
+                  >
+                    {link.label}
+                  </button>
+                )
+              )}
             </nav>
 
             {/* Right actions */}
@@ -166,21 +179,37 @@ export function Navbar() {
               aria-label="Mobile navigation"
             >
               <div className="px-4 py-6 space-y-1">
-                {NAV_LINKS.map((link, i) => (
-                  <motion.button
-                    key={link.label}
-                    onClick={() => {
-                      scrollToSection(link.href.replace('#', ''));
-                      setMobileOpen(false);
-                    }}
-                    className="w-full text-left px-4 py-3 text-white/90 hover:text-[#D4A373] hover:bg-white/5 rounded-xl text-base font-medium font-body transition-colors"
-                    initial={{ x: -20, opacity: 0 }}
-                    animate={{ x: 0, opacity: 1 }}
-                    transition={{ delay: i * 0.05 + 0.05 }}
-                  >
-                    {link.label}
-                  </motion.button>
-                ))}
+                {NAV_LINKS.map((link, i) =>
+                  link.route ? (
+                    <motion.div
+                      key={link.label}
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: i * 0.05 + 0.05 }}
+                    >
+                      <button
+                        onClick={() => { navigate(link.href); setMobileOpen(false); }}
+                        className="w-full text-left px-4 py-3 text-[#D4A373] hover:bg-white/5 rounded-xl text-base font-medium font-body transition-colors flex items-center gap-2"
+                      >
+                        <Flame size={15} /> {link.label}
+                      </button>
+                    </motion.div>
+                  ) : (
+                    <motion.button
+                      key={link.label}
+                      onClick={() => {
+                        scrollToSection(link.href.replace('#', ''));
+                        setMobileOpen(false);
+                      }}
+                      className="w-full text-left px-4 py-3 text-white/90 hover:text-[#D4A373] hover:bg-white/5 rounded-xl text-base font-medium font-body transition-colors"
+                      initial={{ x: -20, opacity: 0 }}
+                      animate={{ x: 0, opacity: 1 }}
+                      transition={{ delay: i * 0.05 + 0.05 }}
+                    >
+                      {link.label}
+                    </motion.button>
+                  )
+                )}
                 <motion.div
                   className="pt-4"
                   initial={{ x: -20, opacity: 0 }}
