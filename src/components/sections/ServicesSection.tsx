@@ -1,42 +1,42 @@
 import { motion } from 'framer-motion';
-import { Truck, Users, Coffee, Package } from 'lucide-react';
+import { UtensilsCrossed, PackageOpen, Truck, Building2 } from 'lucide-react';
 
 const services = [
   {
-    icon: Coffee,
-    emoji: '🍽️',
+    icon: UtensilsCrossed,
     title: 'Dine-In',
     description:
       'Experience MC Bliss in our thoughtfully designed wellness space. A calm, green-scaped environment for mindful eating.',
     features: ['Curated ambience', 'Nutritionist tips', 'Full menu access'],
     color: 'from-[#1E392A] to-[#2d5040]',
+    iconBg: 'bg-white/15',
   },
   {
-    icon: Package,
-    emoji: '🎁',
+    icon: PackageOpen,
     title: 'Premium Takeaway',
     description:
       'Your MC Bliss meal, packaged beautifully in sustainable, eco-conscious materials to enjoy anywhere.',
     features: ['Eco packaging', 'Freshness sealed', 'Same quality'],
     color: 'from-[#8B4513] to-[#D4A373]',
+    iconBg: 'bg-white/15',
   },
   {
     icon: Truck,
-    emoji: '🚚',
     title: 'Home Delivery',
     description:
       'Fresh meals delivered to your doorstep within your delivery window. Order before noon for same-day delivery.',
     features: ['Same-day delivery', 'Temperature-controlled', 'Real-time tracking'],
     color: 'from-[#2d5040] to-[#3d6b52]',
+    iconBg: 'bg-white/15',
   },
   {
-    icon: Users,
-    emoji: '🏢',
+    icon: Building2,
     title: 'Corporate Catering',
     description:
       'Enjoy healthy organic meals for your meetings, events, and office lunches.',
     features: ['Custom menus', 'Minimum 10 pax', 'Flexible scheduling'],
     color: 'from-[#4a3728] to-[#8B4513]',
+    iconBg: 'bg-white/15',
   },
 ];
 
@@ -78,45 +78,51 @@ export function ServicesSection() {
 
         {/* Services grid */}
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-          {services.map((service, i) => (
-            <motion.div
-              key={service.title}
-              className="group relative overflow-hidden rounded-3xl cursor-default"
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: '-60px' }}
-              transition={{ delay: i * 0.1 }}
-              whileHover={{ y: -6 }}
-            >
-              {/* Background */}
-              <div
-                className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-90 group-hover:opacity-100 transition-opacity`}
-              />
+          {services.map((service, i) => {
+            const Icon = service.icon;
+            return (
+              <motion.div
+                key={service.title}
+                className="group relative overflow-hidden rounded-3xl cursor-default"
+                initial={{ opacity: 0, y: 30 }}
+                whileInView={{ opacity: 1, y: 0 }}
+                viewport={{ once: true, margin: '-60px' }}
+                transition={{ delay: i * 0.1 }}
+                whileHover={{ y: -6 }}
+              >
+                {/* Background */}
+                <div
+                  className={`absolute inset-0 bg-gradient-to-br ${service.color} opacity-90 group-hover:opacity-100 transition-opacity`}
+                />
 
-              {/* Content */}
-              <div className="relative p-6 flex flex-col h-full min-h-[300px]">
-                <div className="text-4xl mb-4">{service.emoji}</div>
-                <h3 className="font-display font-bold text-white text-xl mb-3">
-                  {service.title}
-                </h3>
-                <p className="text-white/70 font-body text-sm leading-relaxed flex-1">
-                  {service.description}
-                </p>
-                {/* Features */}
-                <ul className="mt-5 space-y-1.5">
-                  {service.features.map((f) => (
-                    <li
-                      key={f}
-                      className="flex items-center gap-2 text-white/80 text-xs font-body"
-                    >
-                      <span className="w-1.5 h-1.5 rounded-full bg-[#D4A373] flex-shrink-0" />
-                      {f}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </motion.div>
-          ))}
+                {/* Content */}
+                <div className="relative p-6 flex flex-col h-full min-h-[300px]">
+                  {/* Icon */}
+                  <div className={`w-12 h-12 rounded-2xl ${service.iconBg} flex items-center justify-center mb-5 border border-white/20`}>
+                    <Icon size={22} className="text-white" strokeWidth={1.5} />
+                  </div>
+                  <h3 className="font-display font-bold text-white text-xl mb-3">
+                    {service.title}
+                  </h3>
+                  <p className="text-white/70 font-body text-sm leading-relaxed flex-1">
+                    {service.description}
+                  </p>
+                  {/* Features */}
+                  <ul className="mt-5 space-y-1.5">
+                    {service.features.map((f) => (
+                      <li
+                        key={f}
+                        className="flex items-center gap-2 text-white/80 text-xs font-body"
+                      >
+                        <span className="w-1.5 h-1.5 rounded-full bg-[#D4A373] flex-shrink-0" />
+                        {f}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </motion.div>
+            );
+          })}
         </div>
 
         {/* Bottom CTA */}

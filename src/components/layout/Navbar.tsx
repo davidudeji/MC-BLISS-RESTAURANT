@@ -26,6 +26,16 @@ export function Navbar() {
   const navigate = useNavigate();
   const isLanding = location.pathname === '/';
 
+  // Smart scroll: if on landing page, scroll directly; otherwise navigate to /#id
+  const handleNavLink = (href: string) => {
+    const id = href.replace('#', '');
+    if (isLanding) {
+      scrollToSection(id);
+    } else {
+      navigate(`/#${id}`);
+    }
+  };
+
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 50);
     window.addEventListener('scroll', onScroll, { passive: true });
@@ -90,7 +100,7 @@ export function Navbar() {
                 ) : (
                   <button
                     key={link.label}
-                    onClick={() => scrollToSection(link.href.replace('#', ''))}
+                    onClick={() => handleNavLink(link.href)}
                     className="text-white/80 hover:text-white text-sm font-medium font-body transition-colors duration-200 hover:text-[#D4A373]"
                   >
                     {link.label}
@@ -126,7 +136,7 @@ export function Navbar() {
 
               {/* Order CTA – desktop */}
               <button
-                onClick={() => scrollToSection('menu')}
+                onClick={() => handleNavLink('#menu')}
                 className="hidden md:inline-flex items-center gap-2 bg-[#D4A373] text-white text-sm font-medium font-body px-5 py-2.5 rounded-xl hover:bg-[#b8864f] transition-colors duration-200"
               >
                 Order Now
@@ -198,7 +208,7 @@ export function Navbar() {
                     <motion.button
                       key={link.label}
                       onClick={() => {
-                        scrollToSection(link.href.replace('#', ''));
+                        handleNavLink(link.href);
                         setMobileOpen(false);
                       }}
                       className="w-full text-left px-4 py-3 text-white/90 hover:text-[#D4A373] hover:bg-white/5 rounded-xl text-base font-medium font-body transition-colors"

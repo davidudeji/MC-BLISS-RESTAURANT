@@ -3,6 +3,7 @@ import { motion, AnimatePresence } from 'framer-motion';
 import {
   Flame, Star, Trophy, QrCode, CheckCircle2,
   AlertTriangle, Info, Gift, RefreshCw,
+  Beef, Pizza, UtensilsCrossed, Fish, Drumstick, ChefHat, CookingPot,
 } from 'lucide-react';
 import { Navbar } from '../components/layout/Navbar';
 import { Button } from '../components/ui/Button';
@@ -12,13 +13,13 @@ import { getLoyaltyTier } from '../types';
 
 // ── Reward pool metadata ────────────────────────────────────────
 const REWARD_META: Record<string, { icon: React.ReactNode; note: string; stock?: string }> = {
-  'Gourmet Truffle Burger':    { icon: '🍔', note: 'Premium wagyu patty, black truffle aioli' },
-  'Wood-Fired Diavola Pizza':  { icon: '🍕', note: 'Spicy salami, mozzarella, chilli oil' },
-  "Chef's Special Pasta":      { icon: '🍝', note: 'Hand-rolled tagliatelle, slow-braised ragu' },
-  'Pan-Seared Salmon Platter': { icon: '🐟', note: 'Herb butter, lemon-caper velouté' },
-  'Smoky Jerk Chicken Bowl':   { icon: '🍗', note: 'Grilled thigh, coconut rice, slaw', stock: 'Only 3 available' },
-  'Spiced Lamb Skewer Platter':{ icon: '🥙', note: 'Chargrilled lamb, tzatziki, flatbread' },
-  'Meat Pie (House-Baked)':    { icon: '🥧', note: 'Slow-cooked beef filling, buttery shortcrust', stock: 'Only 3 meat pies available' },
+  'Gourmet Truffle Burger':    { icon: <Beef size={18} className="text-[#1E392A]" />,            note: 'Premium wagyu patty, black truffle aioli' },
+  'Wood-Fired Diavola Pizza':  { icon: <Pizza size={18} className="text-[#1E392A]" />,           note: 'Spicy salami, mozzarella, chilli oil' },
+  "Chef's Special Pasta":      { icon: <UtensilsCrossed size={18} className="text-[#1E392A]" />, note: 'Hand-rolled tagliatelle, slow-braised ragu' },
+  'Pan-Seared Salmon Platter': { icon: <Fish size={18} className="text-[#1E392A]" />,            note: 'Herb butter, lemon-caper velouté' },
+  'Smoky Jerk Chicken Bowl':   { icon: <Drumstick size={18} className="text-[#1E392A]" />,       note: 'Grilled thigh, coconut rice, slaw', stock: 'Only 3 available' },
+  'Spiced Lamb Skewer Platter':{ icon: <ChefHat size={18} className="text-[#1E392A]" />,         note: 'Chargrilled lamb, tzatziki, flatbread' },
+  'Meat Pie (House-Baked)':    { icon: <CookingPot size={18} className="text-[#1E392A]" />,      note: 'Slow-cooked beef filling, buttery shortcrust', stock: 'Only 3 meat pies available' },
 };
 
 // ── Alert component ─────────────────────────────────────────────

@@ -1,5 +1,5 @@
 import { motion, AnimatePresence } from 'framer-motion';
-import { ShoppingBag, AlertCircle, Clock } from 'lucide-react';
+import { ShoppingBag, AlertCircle, Clock, Star } from 'lucide-react';
 import { useCartStore } from '../../store/cartStore';
 import { Badge } from '../ui/Badge';
 import { Button } from '../ui/Button';
@@ -31,7 +31,6 @@ export function MenuCard({ item }: MenuCardProps) {
       status: item.status,
     });
     toast.success(`${item.name} added to cart!`, {
-      icon: '🛒',
       style: {
         fontFamily: 'Plus Jakarta Sans, sans-serif',
         borderRadius: '12px',
@@ -72,7 +71,9 @@ export function MenuCard({ item }: MenuCardProps) {
             {CATEGORY_LABELS[item.category]}
           </Badge>
           {item.isFeatured && (
-            <Badge variant="ochre">⭐ Featured</Badge>
+            <Badge variant="ochre">
+              <Star size={10} className="inline" /> Featured
+            </Badge>
           )}
           {isOutOfStock && (
             <Badge variant="red">Out of Stock</Badge>
