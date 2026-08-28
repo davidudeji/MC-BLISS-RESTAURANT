@@ -2,12 +2,12 @@ import { useState } from 'react';
 import { useForm } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import { z } from 'zod';
-import { Eye, EyeOff, AlertCircle } from 'lucide-react';
+import { Eye, EyeOff, AlertCircle, User } from 'lucide-react';
 import { useAuthStore } from '../../store/authStore';
 import { useNavigate } from 'react-router-dom';
 
 const loginSchema = z.object({
-  email: z.string().email('Enter a valid email address'),
+  username: z.string().min(1, 'Username is required'),
   password: z.string().min(1, 'Password is required'),
 });
 
@@ -30,10 +30,10 @@ export default function AdminLoginPage() {
   const onSubmit = async (data: LoginForm) => {
     setError(null);
     try {
-      await login(data.email, data.password);
+      await login(data.username, data.password);
       navigate('/admin');
     } catch (err: any) {
-      setError(err.message || 'Invalid email or password');
+      setError(err.message || 'Invalid username or password');
     }
   };
 
@@ -71,19 +71,24 @@ export default function AdminLoginPage() {
           )}
 
           <form onSubmit={handleSubmit(onSubmit)} className="space-y-5" noValidate>
-            {/* Email */}
+            {/* Username */}
             <div className="space-y-1.5">
-              <label className="text-sm font-medium text-white/80 font-body">Email</label>
-              <input
-                type="email"
-                placeholder="admin@mcbliss.ng"
-                autoComplete="email"
-                className="w-full px-4 py-3 text-sm font-body bg-white/8 border border-white/15 text-white placeholder-white/30 rounded-xl focus:outline-none focus:border-[#D4A373] focus:ring-2 focus:ring-[#D4A373]/20 transition-colors"
-                {...register('email')}
-                aria-invalid={!!errors.email}
-              />
-              {errors.email && (
-                <p className="text-xs text-red-400 font-body">{errors.email.message}</p>
+              <label className="text-sm font-medium text-white/80 font-body">Username</label>
+              <div className="relative">
+                <span className="absolute left-4 top-1/2 -translate-y-1/2 text-white/30">
+                  <User size={16} />
+                </span>
+                <input
+                  type="text"
+                  placeholder="MCBliss"
+                  autoComplete="username"
+                  className="w-full pl-10 pr-4 py-3 text-sm font-body bg-white/8 border border-white/15 text-white placeholder-white/30 rounded-xl focus:outline-none focus:border-[#D4A373] focus:ring-2 focus:ring-[#D4A373]/20 transition-colors"
+                  {...register('username')}
+                  aria-invalid={!!errors.username}
+                />
+              </div>
+              {errors.username && (
+                <p className="text-xs text-red-400 font-body">{errors.username.message}</p>
               )}
             </div>
 
@@ -126,6 +131,15 @@ export default function AdminLoginPage() {
               ) : 'Sign In'}
             </button>
           </form>
+
+          {/* Hint */}
+          <div className="mt-6 p-3 bg-white/5 rounded-xl border border-white/8">
+            <p className="text-white/30 font-body text-xs text-center">
+              Username: <span className="text-white/50 font-semibold">MCBliss</span>
+              &nbsp;·&nbsp;
+              Password: <span className="text-white/50 font-semibold">mcbliss123</span>
+            </p>
+          </div>
         </div>
 
         <p className="text-center text-white/30 font-body text-xs mt-6">

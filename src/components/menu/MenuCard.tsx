@@ -106,7 +106,13 @@ export function MenuCard({ item }: MenuCardProps) {
               <p
                 className={`text-xs font-body ${urgentStock ? 'text-red-700' : 'text-amber-700'}`}
               >
-                Only {item.batchQuantity} cold-steeped bottles remain for afternoon delivery.
+                {item.category === 'ZOBO_JUICES'
+                  ? `Only ${item.batchQuantity} bottles remaining for today.`
+                  : item.category === 'SNACKS'
+                  ? `Only ${item.batchQuantity} snack packs left today.`
+                  : item.category === 'YOGURT_BOWLS'
+                  ? `Only ${item.batchQuantity} yogurt bowls remaining today.`
+                  : `Only ${item.batchQuantity} portions left for today's batch.`}
               </p>
             </motion.div>
           )}
